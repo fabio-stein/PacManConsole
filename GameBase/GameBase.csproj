@@ -50,7 +50,7 @@
     <StartupObject>GameBase.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pacman.ico</ApplicationIcon>
+    <ApplicationIcon>Resource\pacman.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -82,7 +82,7 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="pacman.ico" />
+    <Content Include="Resource\pacman.ico" />
     <Content Include="Resource\map.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
