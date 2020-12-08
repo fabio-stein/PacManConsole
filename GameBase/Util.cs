@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameBase
 {
-    public class Util
+    public static class Util
     {
         public static readonly Random Random = new Random();
     }

@@ -17,7 +17,7 @@ namespace GameBase
             s.Load("Resource/map.txt");
 
             var sw = new Stopwatch();
-            var delay = 0;
+            var delay = 400;
             while (true)
             {
                 sw.Start();
