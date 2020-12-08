@@ -13,7 +13,7 @@ namespace GameBase
         private Direction previousPosition = Direction.NONE;
         private int viewDistance = 5;
 
-        public override void Start(Scene scene, int x, int y)
+        public override void Start(GameScene scene, int x, int y)
         {
             base.Start(scene, x, y);
             pixel.BackgroundColor = ConsoleColor.Magenta;
@@ -55,7 +55,7 @@ namespace GameBase
 
             var destEntity = GetEntityInDirection(nextDirection, 1);
             if (destEntity.entityType == EntityType.PLAYER)
-                Environment.Exit(0);
+                StartTransition(TransitionType.Dead);
 
             if (destX != x || destY != y)
                 Move(destX, destY);

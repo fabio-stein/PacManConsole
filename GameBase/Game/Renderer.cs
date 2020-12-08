@@ -8,18 +8,15 @@ namespace GameBase
 {
     public class Renderer
     {
-        private readonly int originalX;
-        private readonly int originalY;
-        private int scaleX = 4;
-        private int scaleY = 2;
+        private readonly int originalX = Constant.WindowXSize;
+        private readonly int originalY = Constant.WindowYSize;
+        private int scaleX = Constant.WindowXScale;
+        private int scaleY = Constant.WindowYScale;
 
-        public Renderer(int x, int y)
+        public Renderer()
         {
-            this.originalX = x;
-            this.originalY = y;
-
-            var ySize = y * scaleY + 1;
-            var xSize = x * scaleX + 1;
+            var ySize = originalY * scaleY + 1;
+            var xSize = originalX * scaleX + 1;
 
             Console.SetWindowSize(xSize, ySize);
             Console.SetBufferSize(xSize, ySize);
@@ -93,5 +90,17 @@ namespace GameBase
 
             }
         }
+
+        public static void Clear()
+        {
+            Console.ResetColor();
+            Console.SetCursorPosition(0, 0);
+            for (int y = 0; y < Console.WindowHeight; y++)
+            {
+                Console.WriteLine(new string(' ', Console.WindowWidth));
+            }
+            Console.SetCursorPosition(0, 0);
+        }
+
     }
 }

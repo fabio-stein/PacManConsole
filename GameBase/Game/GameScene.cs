@@ -7,22 +7,25 @@ using System.Threading.Tasks;
 
 namespace GameBase
 {
-    public class Scene
+    public class GameScene
     {
         public LinkedList<EntityBase>[,] grid;
         public int xSize;
         public int ySize;
         public Renderer renderer;
         public Input input;
+        public TransitionType transition = TransitionType.None;
+
+        private int ScoreInMap = 0;
 
 
-        public Scene(int x, int y)
+        public GameScene(int x, int y, Renderer renderer)
         {
             grid = new LinkedList<EntityBase>[y, x];
             xSize = x;
             ySize = y;
 
-            renderer = new Renderer(x, y);
+            this.renderer = renderer;
             input = new Input();
         }
 
@@ -66,6 +69,7 @@ namespace GameBase
                         var p = new Score();
                         p.Start(this, x, y);
                         linkedList.AddFirst(p);
+                        ScoreInMap++;
                     }
 
                 }
@@ -91,7 +95,7 @@ namespace GameBase
                 }
             }
 
-            while (executionQueue.Count > 0)
+            while (executionQueue.Count > 0 && transition == TransitionType.None)
             {
                 var item = executionQueue.Dequeue();
                 if (!item.isDestroyed)
@@ -114,12 +118,23 @@ namespace GameBase
                         if (item.Value == e)
                         {
                             entities.Remove(item);
-                            return;
+
+                            if(item.Value is Score)
+                            {
+                                ScoreInMap--;
+                                if (ScoreInMap <= 0)
+                                    StartTransition(TransitionType.Finish);
+                            }
                         }
                         item = item.Next;
                     }
                 }
             }
+        }
+
+        public void StartTransition(TransitionType type)
+        {
+            transition = type;
         }
 
 

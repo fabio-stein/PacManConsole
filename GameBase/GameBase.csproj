@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Base\Constant.cs" />
     <Compile Include="Base\EntityType.cs" />
+    <Compile Include="Base\TransitionType.cs" />
     <Compile Include="Entity\Ghost.cs" />
     <Compile Include="Base\Pixel.cs" />
     <Compile Include="Entity\Score.cs" />
@@ -75,13 +76,18 @@
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\Input.cs" />
+    <Compile Include="Game\DeadScene.cs" />
+    <Compile Include="Game\FinishScene.cs" />
+    <Compile Include="Game\GameController.cs" />
+    <Compile Include="Game\IntroScene.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Game\Renderer.cs" />
-    <Compile Include="Game\Scene.cs" />
+    <Compile Include="Game\GameScene.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="credits.txt" />
     <Content Include="Resource\pacman.ico" />
     <Content Include="Resource\map.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

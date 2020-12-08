@@ -9,7 +9,6 @@ namespace GameBase
     public enum EntityType
     {
         NONE,
-        FRUIT,
         PLAYER,
         GHOST,
         WALL,

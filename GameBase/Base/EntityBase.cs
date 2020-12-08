@@ -10,7 +10,7 @@ namespace GameBase
     {
         public int x { get; private set; }
         public int y { get; private set; }
-        private Scene scene;
+        private GameScene scene;
         public bool smoothRender = false;
         public Pixel pixel { get; private set; } = new Pixel()
         {
@@ -26,7 +26,7 @@ namespace GameBase
         public abstract string name { get; set; }
         public abstract char character { get; set; }
 
-        public virtual void Start(Scene scene, int x, int y)
+        public virtual void Start(GameScene scene, int x, int y)
         {
             this.scene = scene;
             this.x = x;
@@ -57,8 +57,6 @@ namespace GameBase
                     return EntityType.PLAYER;
                 case Constant.GhostChar:
                     return EntityType.GHOST;
-                case Constant.FruitChar:
-                    return EntityType.FRUIT;
                 case Constant.WallChar:
                     return EntityType.WALL;
                 case Constant.ScoreChar:
@@ -100,6 +98,11 @@ namespace GameBase
                 return null;
 
             return gridView[destY, destX].First.Value;
+        }
+
+        public void StartTransition(TransitionType type)
+        {
+            scene.StartTransition(type);
         }
     }
 }
