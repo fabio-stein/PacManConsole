@@ -18,15 +18,14 @@ namespace GameBase
             var ySize = originalY * scaleY + 1;
             var xSize = originalX * scaleX + 1;
 
-            Console.SetWindowSize(xSize, ySize);
-            Console.SetBufferSize(xSize, ySize);
-            Console.CursorVisible = false;
-            Console.Clear();
+            CustomConsole.Initialize(xSize, ySize);
+            CustomConsole.CursorVisible = false;
+            CustomConsole.Clear();
         }
 
         public void Render(LinkedList<EntityBase>[,] grid)
         {
-            Console.SetCursorPosition(0, 0);
+            CustomConsole.SetCursorPosition(0, 0);
 
             for (int y = 0; y < this.originalY; y++)
             {
@@ -34,9 +33,9 @@ namespace GameBase
                 {
                     var entities = grid[y, x];
                     var item = entities.First.Value;
-                    Console.ForegroundColor = item.pixel.ForegroundColor;
-                    Console.BackgroundColor = item.pixel.BackgroundColor;
-                    Console.Write(item.character);
+                    CustomConsole.ForegroundColor = item.pixel.ForegroundColor;
+                    CustomConsole.BackgroundColor = item.pixel.BackgroundColor;
+                    CustomConsole.Write(item.character);
 
                     //Scale X
                     if (x < this.originalX - 1)
@@ -44,16 +43,16 @@ namespace GameBase
                         var nextItem = grid[y, x + 1].First.Value;
                         if (!(item.smoothRender && nextItem.smoothRender && item.character == nextItem.character))
                         {
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.BackgroundColor = ConsoleColor.Black;
+                            CustomConsole.ForegroundColor = ConsoleColor.Black;
+                            CustomConsole.BackgroundColor = ConsoleColor.Black;
                         }
                         for (int s = 0; s < scaleX - 1; s++)
-                            Console.Write(' ');
+                            CustomConsole.Write(' ');
                     }
                 }
 
                 //Finish line
-                Console.WriteLine();
+                CustomConsole.WriteLine();
 
                 //Scale Y
                 if (y < this.originalY - 1)
@@ -69,22 +68,22 @@ namespace GameBase
                             //1 color pixel + (scaleX -1) black pixels
                             if (item.smoothRender && nextItem.smoothRender && item.character == nextItem.character)
                             {
-                                Console.ForegroundColor = item.pixel.ForegroundColor;
-                                Console.BackgroundColor = item.pixel.BackgroundColor;
-                                Console.Write(' ');
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Console.Write(new string(' ', this.scaleX - 1));
+                                CustomConsole.ForegroundColor = item.pixel.ForegroundColor;
+                                CustomConsole.BackgroundColor = item.pixel.BackgroundColor;
+                                CustomConsole.Write(' ');
+                                CustomConsole.ForegroundColor = ConsoleColor.Black;
+                                CustomConsole.BackgroundColor = ConsoleColor.Black;
+                                CustomConsole.Write(new string(' ', this.scaleX - 1));
                             }
                             else
                             {
                                 //(scaleX) black pixels only
-                                Console.ForegroundColor = ConsoleColor.Black;
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Console.Write(new string(' ', this.scaleX));
+                                CustomConsole.ForegroundColor = ConsoleColor.Black;
+                                CustomConsole.BackgroundColor = ConsoleColor.Black;
+                                CustomConsole.Write(new string(' ', this.scaleX));
                             }
                         }
-                        Console.WriteLine();
+                        CustomConsole.WriteLine();
                     }
                 }
 
@@ -93,13 +92,7 @@ namespace GameBase
 
         public static void Clear()
         {
-            Console.ResetColor();
-            Console.SetCursorPosition(0, 0);
-            for (int y = 0; y < Console.WindowHeight; y++)
-            {
-                Console.WriteLine(new string(' ', Console.WindowWidth));
-            }
-            Console.SetCursorPosition(0, 0);
+            CustomConsole.Clear();
         }
 
     }

@@ -76,6 +76,7 @@
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Base\EntityBase.cs" />
     <Compile Include="Base\Input.cs" />
+    <Compile Include="Game\CustomConsole.cs" />
     <Compile Include="Game\DeadScene.cs" />
     <Compile Include="Game\FinishScene.cs" />
     <Compile Include="Game\GameController.cs" />

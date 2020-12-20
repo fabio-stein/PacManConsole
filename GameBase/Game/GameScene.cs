@@ -26,6 +26,7 @@ namespace GameBase
             ySize = y;
 
             this.renderer = renderer;
+            Renderer.Clear();
             input = new Input();
         }
 
